@@ -16,7 +16,7 @@ Bu proje, kullanıcıların kişisel gelişimlerini destekleyen ve psikoloji tem
     ```
     npx expo start
     ```
-## 📸 Ekran Görüntüleri
+## 📸 Uygulamanın Bazı Ekran Görüntüleri
 
 ![image](https://github.com/user-attachments/assets/69324e2d-de13-45d0-ab2d-615b74e8da6c)
 
