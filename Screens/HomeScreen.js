@@ -3,21 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView, Tex
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleFavorite } from '../redux/slices/FavoritesSlice';
-
-const CategoryCard = ({ title, description, icon, onPress, onFavoritePress, isFavorite }) => (
-  <TouchableOpacity style={styles.categoryCard} onPress={onPress}>
-    <View style={styles.categoryIcon}>
-      <Image source={icon} style={styles.categoryImage} resizeMode="contain" />
-    </View>
-    <View style={styles.categoryContent}>
-      <Text style={styles.categoryTitle}>{title}</Text>
-      <Text style={styles.categoryDescription} numberOfLines={2}>{description}</Text>
-    </View>
-    <TouchableOpacity onPress={onFavoritePress} style={styles.favoriteButton}>
-      <MaterialCommunityIcons name={isFavorite ? "heart" : "heart-outline"} size={24} color={isFavorite ? "red" : "#333"} />
-    </TouchableOpacity>
-  </TouchableOpacity>
-);
+import CategoryCard from '../components/cards/CategoryCards';
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -86,7 +72,7 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.mainCardDescription}>
               İnsan neden bağlanmaya ihtiyaç duyar? Sosyal bağlanma nedir? Bağlanmanın temellerini nörolojik açıdan inceliyoruz!
             </Text>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.readMoreButton}
               onPress={() => navigateToBlogDetail({
                 title: 'Bağlanmanın Nöral Temelleri',
@@ -194,13 +180,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#333',
-    marginLeft: 4,
+    marginLeft: 2,
   },
   content: {
     flex: 1,
   },
   scrollContent: {
-    paddingBottom: 120, // Navbar'ın yüksekliği + ekstra padding
+    paddingBottom: 120,
   },
   mainCard: {
     margin: 16,
@@ -260,7 +246,7 @@ const styles = StyleSheet.create({
   },
   searchBarContainer: {
     paddingHorizontal: 16,
-    marginBottom: 16,
+    marginBottom: 13,
   },
   searchBar: {
     flexDirection: 'row',
@@ -269,6 +255,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     paddingHorizontal: 16,
     paddingVertical: 12,
+    borderWidth: 1,
   },
   searchInput: {
     flex: 1,
@@ -280,43 +267,6 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 16,
   },
-  categoryCard: {
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    gap: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  categoryIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: '#f5f5f5',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  categoryContent: {
-    flex: 1,
-  },
-  categoryTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 4,
-  },
-  categoryDescription: {
-    fontSize: 14,
-    color: '#666',
-    lineHeight: 20,
-  },
   favoriteButton: {
     position: 'absolute',
     top: 16,
@@ -324,10 +274,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     borderRadius: 20,
     padding: 8,
-  },
-  categoryImage: {
-    width: 50,
-    height: 50,
   },
 });
 

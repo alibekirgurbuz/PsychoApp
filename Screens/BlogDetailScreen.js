@@ -3,16 +3,15 @@ import { View, StyleSheet, SafeAreaView, ScrollView, Text, Image, Platform, Stat
 import { AppHeader } from '../components';
 
 const BlogDetailScreen = ({ navigation, route }) => {
-  const { title, description, icon } = route.params;
+  const { title, description, icon,  } = route.params;
 
   return (
     <SafeAreaView style={styles.container}>
-      <AppHeader title="Blog Detay" onBackPress={() => navigation.goBack()} />
-      
+      <AppHeader title={title} onBackPress={() => navigation.goBack()} />
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <Image source={icon} style={styles.image} resizeMode="cover" />
         <View style={styles.textContainer}>
-          <Text style={styles.title}>{title}</Text>
+          {/* <Text style={styles.title}>{title}</Text> */}
           <Text style={styles.description}>{description}</Text>
         </View>
       </ScrollView>

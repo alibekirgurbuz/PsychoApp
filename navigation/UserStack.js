@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Vibration, Animated } from 'react-native';
 
 // Screens
 import HomeScreen from '../Screens/HomeScreen';
@@ -11,6 +11,8 @@ import FavoriteScreen from '../Screens/FavoriteScreen';
 import PersonalFollowScreen from '../Screens/PersonalFollowScreen';
 import ProfileScreen from '../Screens/ProfileScreen';
 import BlogDetailScreen from '../Screens/BlogDetailScreen';
+import HabitTrackingScreen from '../Screens/HabitTrackingScreen';
+import AITherapistScreen from '../Screens/AITherapistScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -32,6 +34,7 @@ const FavoriteStack = () => (
 const PersonalFollowStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="PersonalFollowMain" component={PersonalFollowScreen} />
+    <Stack.Screen name="HabitTracking" component={HabitTrackingScreen} />
   </Stack.Navigator>
 );
 
@@ -45,11 +48,40 @@ const HomeStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="HomeMain" component={HomeScreen} />
     <Stack.Screen name="BlogDetail" component={BlogDetailScreen} />
+    <Stack.Screen name="AITherapist" component={AITherapistScreen} />
   </Stack.Navigator>
 );
 
 // Custom Tab Bar Component
 const CustomTabBar = ({ state, descriptors, navigation }) => {
+  const [scaleAnim] = React.useState(new Animated.Value(1));
+
+  const handleLongPress = (routeName) => {
+    if (routeName === 'Home') {
+      // Titreşim efekti
+      Vibration.vibrate(400);
+
+      // Animasyon efekti
+      Animated.sequence([
+        Animated.timing(scaleAnim, {
+          toValue: 1.2,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(scaleAnim, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        // Animasyon bittikten sonra AI Terapist ekranına git
+        navigation.navigate('Home', { 
+          screen: 'AITherapist' 
+        });
+      });
+    }
+  };
+
   return (
     <View style={styles.tabBarWrapper}>
       <View style={styles.tabBarContainer}>
@@ -96,6 +128,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
               <TouchableOpacity
                 key={route.key}
                 onPress={onPress}
+                onLongPress={() => handleLongPress(route.name)}
                 style={[
                   styles.tabItem,
                   isHome && styles.homeTab,
@@ -103,11 +136,19 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
                 ]}
                 activeOpacity={isHome ? 0.9 : 1}
               >
-                <MaterialCommunityIcons
-                  name={iconName}
-                  size={isHome ? 28 : 24}
-                  color={isFocused || false ? '#00C853' : '#999'}
-                />
+                <Animated.View
+                  style={[
+                    isHome && {
+                      transform: [{ scale: scaleAnim }],
+                    },
+                  ]}
+                >
+                  <MaterialCommunityIcons
+                    name={iconName}
+                    size={isHome ? 28 : 24}
+                    color={isFocused || false ? '#00C853' : '#999'}
+                  />
+                </Animated.View>
               </TouchableOpacity>
             );
           })}

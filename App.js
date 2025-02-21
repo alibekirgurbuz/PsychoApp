@@ -6,7 +6,6 @@ import store from './redux/store';
 import RootNavigation from './navigation/RootNavigation';
 
 enableScreens();
-
 export default function App() {
   return (
     <Provider store={store}>
