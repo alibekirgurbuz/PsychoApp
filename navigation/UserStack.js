@@ -13,6 +13,9 @@ import ProfileScreen from '../Screens/ProfileScreen';
 import BlogDetailScreen from '../Screens/BlogDetailScreen';
 import HabitTrackingScreen from '../Screens/HabitTrackingScreen';
 import AITherapistScreen from '../Screens/AITherapistScreen';
+import TestScreen from '../Screens/TestScreen';
+import StatisticsScreen from '../Screens/StatisticsScreen';
+import TestDetailScreen from '../Screens/TestDetailScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -35,6 +38,9 @@ const PersonalFollowStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="PersonalFollowMain" component={PersonalFollowScreen} />
     <Stack.Screen name="HabitTracking" component={HabitTrackingScreen} />
+    <Stack.Screen name="TestScreen" component={TestScreen} />
+    <Stack.Screen name="StatisticsScreen" component={StatisticsScreen} />
+    <Stack.Screen name="TestDetailScreen" component={TestDetailScreen} />
   </Stack.Navigator>
 );
 
@@ -167,7 +173,7 @@ const TabNavigator = () => (
     }}
     initialRouteName="Home"
   >
-    <Tab.Screen name="Messages" component={MessageStack} />
+    <Tab.Screen name="Messages" component={MessageStack}  />
     <Tab.Screen name="Favorites" component={FavoriteStack} />
     <Tab.Screen name="Home" component={HomeStack} />
     <Tab.Screen name="PersonalFollow" component={PersonalFollowStack} />

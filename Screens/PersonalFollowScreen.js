@@ -17,7 +17,10 @@ const PersonalFollowScreen = ({ navigation }) => {
         <View style={styles.surveysContainer}>
           <View style={styles.topSection}>
             {/* Top 3 Card bileşenler*/}
-            <TopCard icon="chart-line" />
+            <TopCard
+              icon="chart-line"
+              onPress={() => navigation.navigate('StatisticsScreen')}
+               />
             <TopCard icon="lightbulb-on" />
             <TopCard 
               icon="link-variant" 
@@ -30,13 +33,15 @@ const PersonalFollowScreen = ({ navigation }) => {
               <View style={styles.cardContainer}>
                 <SurveyCard 
                   title="Anksiyete" 
-                  icon={require('../assets/icons/Anksiyete-icon.png')} 
+                  icon={require('../assets/icons/Anksiyete-icon.png')}
+                  onPress={() => navigation.navigate('TestScreen', { testType: 'Anksiyete' })}
                 />
               </View>
               <View style={styles.cardContainer}>
                 <SurveyCard 
                   title="Depresyon" 
-                  icon={require('../assets/icons/Depresyon-icon.png')} 
+                  icon={require('../assets/icons/Depresyon-icon.png')}
+                  onPress={() => navigation.navigate('TestScreen', { testType: 'Depresyon' })}
                 />
               </View>
             </View>
@@ -44,13 +49,15 @@ const PersonalFollowScreen = ({ navigation }) => {
               <View style={styles.cardContainer}>
                 <SurveyCard 
                   title="Sosyal Anksiyete" 
-                  icon={require('../assets/icons/SosyalAnksiyete-icon.png')} 
+                  icon={require('../assets/icons/SosyalAnksiyete-icon.png')}
+                  onPress={() => navigation.navigate('TestScreen', { testType: 'Sosyal Anksiyete' })}
                 />
               </View>
               <View style={styles.cardContainer}>
                 <SurveyCard 
                   title="Özgüven" 
-                  icon={require('../assets/icons/Özgüven-icon.png')} 
+                  icon={require('../assets/icons/Özgüven-icon.png')}
+                  onPress={() => navigation.navigate('TestScreen', { testType: 'Özgüven' })}
                 />
               </View>
             </View>
@@ -58,13 +65,15 @@ const PersonalFollowScreen = ({ navigation }) => {
               <View style={styles.cardContainer}>
                 <SurveyCard 
                   title="Öfke" 
-                  icon={require('../assets/icons/Öfke-icon.png')} 
+                  icon={require('../assets/icons/Öfke-icon.png')}
+                  onPress={() => navigation.navigate('TestScreen', { testType: 'Öfke' })}
                 />
               </View>
               <View style={styles.cardContainer}>
                 <SurveyCard 
                   title="Fobi" 
-                  icon={require('../assets/icons/Fobi-icon.png')} 
+                  icon={require('../assets/icons/Fobi-icon.png')}
+                  onPress={() => navigation.navigate('TestScreen', { testType: 'Fobi' })}
                 />
               </View>
             </View>
@@ -72,13 +81,15 @@ const PersonalFollowScreen = ({ navigation }) => {
               <View style={styles.cardContainer}>
                 <SurveyCard 
                   title="Borderline" 
-                  icon={require('../assets/icons/Borderline-icon.png')} 
+                  icon={require('../assets/icons/Borderline-icon.png')}
+                  onPress={() => navigation.navigate('TestScreen', { testType: 'Borderline' })}
                 />
               </View>
               <View style={styles.cardContainer}>
                 <SurveyCard 
                   title="Dikkat Dağınıklığı" 
-                  icon={require('../assets/icons/DikkatDagınıklıgı-icon.png')} 
+                  icon={require('../assets/icons/DikkatDagınıklıgı-icon.png')}
+                  onPress={() => navigation.navigate('TestScreen', { testType: 'Dikkat Dağınıklığı' })}
                 />
               </View>
             </View>
